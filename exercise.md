@@ -12,8 +12,10 @@
 digraph {
     rankdir = "LR";
     node [shape=box];
-
-    "     コンピュータリテラシー    " -> "   プログラミングI  ";
+　情報工学概論　->　計算機工学　-> 論理回路
+　基礎ゼミ　->　プログラミング基礎Ⅰ　-> 　プログラミング基礎Ⅱ　
+　情報工学概論　->　プログラミング基礎Ⅰ　
+    " 　コンピュータリテラシー　 " -> " 　プログラミングI　 "->　プログラミングⅡ　
 }
 ```
 
@@ -27,6 +29,25 @@ digraph {
 @startwbs ex02
 * 拓殖大学
 ** 商学部
+*** 経営学科
+*** 国際ビジネス学科
+*** 会計学科
+** 政経学部
+*** 法律政治学科
+*** 経済学科
+** 外国語学部
+*** 英米語学科
+*** 中国語学科
+*** スペイン語学科
+*** 国際日本語学科
+** 工学部
+*** 機械システム工学科
+*** 電子システム工学科
+*** 情報工学科
+*** デザイン学科
+** 国際学部
+*** 国際学科
+
 @endwbs
 ```
 
@@ -37,13 +58,33 @@ digraph {
 プレビュー結果が上の図のようになるように，下記の記述を完成させよ．ただし，別名については適当に設定してよい．(色や影などの違いは気にしなくてよい)
 
 ```plantUML
+
 @startuml ex03
 left to right direction
+
 actor 学生 as student
+actor 教員 as teacher
+
 rectangle {
+    usecase "課題の登録" as uc1
     usecase "課題の受領" as uc2
+    usecase "リポジトリのクローン" as uc3
+    usecase "課題ファイルの修正" as uc4
+    usecase "修正をステージに上げる" as uc5
+    usecase "修正のコミット" as uc6
+    usecase "リモートリポジトリにpush" as uc7
+    usecase "提出結果の採点" as uc8
+   
 }
 student --> uc2
+student --> uc3
+student --> uc4
+student --> uc5
+student --> uc6
+student --> uc7
+ 
+uc1 <-- teacher
+uc8 <-- teacher 
 @enduml
 ```
 
@@ -53,12 +94,38 @@ student --> uc2
 独自の図解を作成せよ．対象は自由に決めてよいが，
 誰かのコピーにならないように留意せよ．
 
+```plantUML
+@startuml
+left to right direction
+
+actor 自分 as express
+actor 友人A as limited
+
+rectangle 水曜日の日程{
+    usecase "基礎ゼミ" as uc1
+    usecase "情報工学概論" as uc2
+    usecase "基礎科学実験" as uc3
+    usecase "基礎科学実験" as uc4
+    usecase "基礎科学実験" as uc5
+    
+}
+
+express --> uc1
+express --> uc2
+express --> uc3
+express --> uc4
+express --> uc5
+uc1 <-- limited
+uc2 <-- limited
+@enduml
 ```
-```
+
+
 
 
 ## チェック
-- [ ] 課題 3.1 有向グラフ
-- [ ] 課題 3.2 WBS
-- [ ] 課題 3.3 ユースケース図
-- [ ] 課題 3.4 オリジナルの図解
+
+- [x] 課題 3.1 有向グラフ
+- [x] 課題 3.2 WBS
+- [x] 課題 3.3 ユースケース図
+- [x] 課題 3.4 オリジナルの図解
